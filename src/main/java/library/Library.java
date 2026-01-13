@@ -168,4 +168,8 @@ public List<Book> getAvailableBooks() {
                 ", count of available books: " + count + ", count of taken books: "
                 + (books.size() - count));
     }
+    public void removeBook(int id)
+    {
+        books.remove(id - 1);
+    }
 }
