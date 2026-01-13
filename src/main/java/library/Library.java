@@ -155,4 +155,17 @@ public List<Book> getAvailableBooks() {
     public void printOperationLog() {
         operationLog.printLog();
     }
+
+    public void getStatistics() {
+        System.out.println();
+        int count = 0;
+        for(Book book : books){
+            if(book.getAvailable()) {
+                count++;
+            }
+        }
+        System.out.println("Total count of books in the library: " + books.size() +
+                ", count of available books: " + count + ", count of taken books: "
+                + (books.size() - count));
+    }
 }
