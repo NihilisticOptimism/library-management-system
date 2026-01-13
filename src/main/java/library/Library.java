@@ -172,4 +172,12 @@ public List<Book> getAvailableBooks() {
     {
         books.remove(id - 1);
     }
+    public void updateBook(int id, Book newData) {
+        if(id > books.size()) {
+            System.out.println("Error");
+        }
+        else {
+            books.set(id - 1, newData);
+        }
+    }
 }
