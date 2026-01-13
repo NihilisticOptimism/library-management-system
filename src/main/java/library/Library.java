@@ -73,11 +73,21 @@ public class Library {
         operationLog.addEntry(entry);
     }
 
-    public Book findBookById(int id) {
+    public Integer findIndex(int id) {
+        int index = 0;
         for(Book book : books) {
             if (book.getId() == id) {
-                return book;
+                return index;
             }
+            index++;
+        }
+        return null;
+    }
+
+    public Book findBookById(int id) {
+        Integer found = this.findIndex(id);
+        if (found != null){
+            return books.get(found);
         }
         return null;
     }
@@ -142,7 +152,7 @@ public class Library {
         }
 
     }
-public List<Book> getAvailableBooks() {
+    public List<Book> getAvailableBooks() {
         List<Book> booksAvailable = new ArrayList<>();
         for(Book book : books) {
             if (book.getAvailable()) {
@@ -168,16 +178,17 @@ public List<Book> getAvailableBooks() {
                 ", count of available books: " + count + ", count of taken books: "
                 + (books.size() - count));
     }
-    public void removeBook(int id)
-    {
-        books.remove(id - 1);
+
+    public void removeBook(int id) {
+        Integer found = this.findIndex(id);
+        if (found != null){
+            books.remove(found);
+        }
     }
     public void updateBook(int id, Book newData) {
-        if(id > books.size()) {
-            System.out.println("Error");
-        }
-        else {
-            books.set(id - 1, newData);
+        Integer found = this.findIndex(id);
+        if (found != null){
+            books.set(found, newData);
         }
     }
 }
